@@ -47,9 +47,21 @@ kind: Service
 metadata:
   name: gke-hello-app-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - port: 80
       targetPort: 8080
+      protocol: TCP
   selector:
     app: gke-hello-app
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gke-hello-app-ingress
+spec:
+  defaultBackend:
+    service:
+      name: gke-hello-app-service
+      port:
+        number: 80
