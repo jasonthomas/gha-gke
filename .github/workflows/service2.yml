@@ -21,7 +21,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: service1
+  GKE_CLUSTER: service2
   GKE_REGION: us-west1
   DEPLOYMENT_NAME: gke-hello-app # TODO: update deployment name if changed in deployment.yaml
 
@@ -29,6 +29,7 @@ jobs:
   setup-and-deploy:
     name: Setup and Deploy
     runs-on: ubuntu-latest
+    environment: service2
 
     steps:
     - name: Checkout
